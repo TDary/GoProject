@@ -3,21 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	s := []int{7, 2, 8, -9, 4, 0}
+	var s []byte
+	s = append(s, 'a')
+	s = append(s, 't')
+	fmt.Print(s[0])
 
-	c := make(chan int)
-
-	go sum(s[:len(s)/2], c)
-	go sum(s[len(s)/2:], c)
-	x, y := <-c, <-c //从通道c 中接收
-
-	fmt.Println(x, y, x+y)
 }
 
-func sum(s []int, c chan int){
+func sum(s []int, c chan int) {
 	sum := 0
-	for _, v := range s{
+	for _, v := range s {
 		sum += v
 	}
-	c <- sum   //把sum发送到通道c
+	c <- sum //把sum发送到通道c
 }
