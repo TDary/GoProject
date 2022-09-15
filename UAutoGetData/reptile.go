@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -17,6 +18,7 @@ func main() {
 		err = os.Remove(file_name)
 		if err != nil {
 			fmt.Print("result.csv文件正在打开中，请将其关闭后再执行本程序...")
+			time.Sleep(time.Second * 10)
 			return
 		} else {
 			//fmt.Print("清除旧文件完毕...")
