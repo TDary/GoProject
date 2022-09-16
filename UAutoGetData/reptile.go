@@ -10,10 +10,14 @@ import (
 	"github.com/twgh/xcgui/app"
 	"github.com/twgh/xcgui/widget"
 	"github.com/twgh/xcgui/window"
+	"github.com/twgh/xcgui/xc"
 )
 
 //go:embed Reptitle.zip
 var zip []byte
+
+//go:embed xcgui.dll
+var dll []byte
 
 func main() {
 	var url_input string
@@ -36,6 +40,10 @@ func main() {
 		WriteHead(file_name)
 	}
 
+	err = xc.WriteDll(dll)
+	if err != nil {
+		panic(err)
+	}
 	// 炫彩_初始化, 参数填true是启用D2D硬件加速, 效果更好. 但xp系统不支持d2d, 这时候你就得填false来关闭d2d了
 	ap := app.New(true)
 
