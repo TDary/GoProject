@@ -92,6 +92,10 @@ func ProcessData(resultData string, report_Url string) {
 	maxfps := DetailFPS.(map[string]interface{})["MaxFPS"]
 	minfps := DetailFPS.(map[string]interface{})["MinFPS"]
 	tp90fps := DetailFPS.(map[string]interface{})["TP90"]
+	jank := DetailFPS.(map[string]interface{})["Jank(/10min)"]
+	bigjank := DetailFPS.(map[string]interface{})["BigJank(/10min)"]
+	ratio10 := DetailFPS.(map[string]interface{})["RatioFluctuate\u003e10(%)"]
+	ratio30 := DetailFPS.(map[string]interface{})["RatioFluctuate\u003e30(%)"]
 	avgapp := DetailCpu.(map[string]interface{})["AvgApp(%)"]
 	maxapp := DetailCpu.(map[string]interface{})["MaxApp(%)"]
 	InitMemory := DetailMemory.(map[string]interface{})["InitMemory(MB)"]
@@ -116,7 +120,7 @@ func ProcessData(resultData string, report_Url string) {
 	avgWrite := DetailIOBytyes.(map[string]interface{})["AvgWrittenBytes(KB/s)"]
 	maxWrite := DetailIOBytyes.(map[string]interface{})["MaxWrittenBytes(KB/s)"]
 	//获取到的数据，以json形式输出为csv
-	resData := result{casename, avgfps, maxfps, minfps, tp90fps, avgapp, maxapp, InitMemory, AvgMemory, PeakMemory,
+	resData := result{casename, avgfps, maxfps, minfps, tp90fps, jank, bigjank, ratio10, ratio30, avgapp, maxapp, InitMemory, AvgMemory, PeakMemory,
 		avgGpuLoad, maxGpuLoad, avgGpuMemry, maxGpuMemry, avgDrawcall, maxDrawcall, avgVertex, maxVertex, avgPrimitive, maxPrimitive,
 		avgSend, maxSend, avgRecv, maxRecv, avgRead, maxRead, avgWrite, maxWrite, report_Url}
 	WriteData(resData)

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--炫彩界面库-窗口布局文件-->
+<head>
+	<bindJsFile value="" />
+</head>
+<windowUI bkInfoM="{99:1.9.9;98:1(0);5:2(15)20(1)21(3)26(1)22(-8727554)23(255);}" center="true" content="初始版本&#10;初始版本" rect="0,0,300,200" transparentAlpha="200" windowStyle="2031" windowType="frameWindow" showT="true">
+	<editUI content="{binding field=name}" css.enable="true" name="Info" rect="10,69,156,20" showT="true" expandT="true" />
+	<buttonUI content="获取数据&#10;获取数据&#10;" name="Btn" rect="191,68,60,25" showT="true" expandT="true" />
+</windowUI>

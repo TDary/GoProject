@@ -3,9 +3,17 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 	"time"
+
+	_ "embed"
+
+	"github.com/twgh/xcgui/app"
+	"github.com/twgh/xcgui/widget"
+	"github.com/twgh/xcgui/window"
 )
+
+//go:embed Reptitle.zip
+var zip []byte
 
 func main() {
 	var url_input string
@@ -27,19 +35,39 @@ func main() {
 	} else {
 		WriteHead(file_name)
 	}
-	//主逻辑
-	for true {
-		fmt.Println("Please Input an url：")
-		fmt.Scan(&url_input)
-		if strings.Contains(url_input, "http") {
-			realUrl = ProcessUrl(url_input)
-			isSuccess = getData(realUrl, url_input)
-			if isSuccess == "Success" {
-				fmt.Println("Get datas success!")
-			}
-		} else {
-			fmt.Println("Error Input----")
-		}
-	}
 
+	// 炫彩_初始化, 参数填true是启用D2D硬件加速, 效果更好. 但xp系统不支持d2d, 这时候你就得填false来关闭d2d了
+	ap := app.New(true)
+
+	w := window.NewByLayoutZipMem(zip, "main.xml", "", 0, 0)
+
+	//获取窗口布局文件中的按钮以及文本框
+	btn := widget.NewButtonByName("Btn")
+	input := widget.NewEditByName("Info")
+	input.SetDefaultText("请输入一个url...")
+	//注册按钮被单击事件
+	btn.Event_BnClick(func(pbHandled *bool) int {
+		url_input = input.GetText_Temp()
+		if len(url_input) < 10 {
+			ap.Alert("提示", "输入url有误,请重新输入")
+			return 0
+		}
+		realUrl = ProcessUrl(url_input)
+		isSuccess = getData(realUrl, url_input)
+		if isSuccess == "Success" {
+			ap.Alert("提示", "获取成功(可继续获取)")
+		} else {
+			ap.Alert("提示", "输入url有误,请重新输入")
+		}
+		return 0
+	})
+
+	//调整布局
+	w.AdjustLayout()
+	// 显示窗口
+	w.Show(true)
+	// 运行消息循环, 程序会被阻塞在这里不退出, 当炫彩窗口数量为0时退出
+	ap.Run()
+	// 退出界面库释放资源
+	ap.Exit()
 }

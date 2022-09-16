@@ -17,7 +17,7 @@ func WriteHead(file_name string) {
 	f.WriteString("\xEF\xBB\xBF") //写入UTF-8
 	w := csv.NewWriter(f)         //创建一个新的写入文件流
 	data := []string{
-		"案例名", "AvgFPS", "MaxFPS", "MinFPS", "FPS TP90", "AvgApp(%)", "MaxApp(%)", "InitMemory(MB)", "AvgMemory(MB)", "PeakMemory(MB)",
+		"案例名", "AvgFPS", "MaxFPS", "MinFPS", "FPS TP90", "Jank(/10min)", "BigJank(/10min)", "RatioFluctuate>10%", "RatioFluctuate>30%", "AvgApp(%)", "MaxApp(%)", "InitMemory(MB)", "AvgMemory(MB)", "PeakMemory(MB)",
 		"Avg(GPULoad)[%]", "Max(GPULoad)[%]", "Avg(GPUMemoryUsed)[MB]", "Peak(GPUMemoryUsed)[MB]", "Avg(Drawcall)",
 		"Peak(Drawcall)", "Avg(Vertex)", "Peak(Vertex)", "Avg(Primitive)", "Peak(Primitive)", "AvgSend(KB/s)", "MaxSend(KB/s)", "AvgRecv(KB/s)",
 		"MaxRecv(KB/s)", "AvgReadBytes(KB/s)", "MaxReadBytes(KB/s)", "AvgWrittenBytes(KB/s)", "MaxWrittenBytes(KB/s)", "基础数据"}
@@ -87,7 +87,7 @@ func WriteData(res result) {
 	w := csv.NewWriter(f)         //创建一个新的写入文件流
 
 	resData := []string{res.CaseName.(string), res.AvgFPS.(string), res.MaxFPS.(string), res.MinFPS.(string),
-		res.FPSTP90.(string), res.AvgApp.(string), res.MaxApp.(string), res.InitMemory.(string), res.AvgMemory.(string),
+		res.FPSTP90.(string), res.Jank.(string), res.BigJank.(string), res.RatioFluctuate10.(string), res.RatioFluctuate30.(string), res.AvgApp.(string), res.MaxApp.(string), res.InitMemory.(string), res.AvgMemory.(string),
 		res.PeakMemory.(string), res.AvgGPULoad.(string), res.MaxGPULoad.(string), res.AvgGPUMemory.(string), res.MaxGPUMemory.(string),
 		res.AvgDrawcall.(string), res.PeakDrawcall.(string), res.AvgVertex.(string), res.PeakVertex.(string), res.AvgPrimitive.(string),
 		res.PeakPrimitive.(string), res.AvgSend.(string), res.MaxSend.(string), res.AvgRecv.(string), res.MaxRecv.(string), res.AvgRead.(string),
