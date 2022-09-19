@@ -1,4 +1,4 @@
-//go:generate goversioninfo -icon=icon.ico -manifest=goversioninfo.exe.manifest
+//go:generate goversioninfo -icon=app.ico -manifest=goversioninfo.exe.manifest
 package main
 
 import "fmt"
