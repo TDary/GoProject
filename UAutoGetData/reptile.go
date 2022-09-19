@@ -1,3 +1,4 @@
+//go:generate goversioninfo -icon=resource/app.ico -manifest=resource/goversioninfo.exe.manifest
 package main
 
 import (
@@ -14,16 +15,16 @@ import (
 	"github.com/twgh/xcgui/xcc"
 )
 
-//go:embed Reptitle.zip
+//go:embed resource/Reptitle.zip
 var zip []byte
 
-//go:embed xcgui.dll
+//go:embed resource/xcgui.dll
 var dll []byte
 
-//go:embed Title.ico
+//go:embed resource/Title.ico
 var icon []byte
 
-//窗口图标句柄
+//窗口图标句柄设置
 var hIcon = 0
 
 func main() {
