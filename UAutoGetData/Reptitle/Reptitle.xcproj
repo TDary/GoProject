@@ -1,3 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--炫彩界面库-项目配置文件-->
-<project name="" />
+<?xml version="1.0"?>
+<project name="">
+	<language value="xc">
+		<compile debug="true" />
+	</language>
+	<modules>
+		<item path="module_base.h" />
+		<item path="module_xcgui.h" />
+		<item path="module_xcgui_class.h" />
+	</modules>
+	<breakpoints />
+	<codeExpand />
+</project>
