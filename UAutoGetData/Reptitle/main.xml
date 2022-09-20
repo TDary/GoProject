@@ -4,8 +4,8 @@
 	<bindJsFile value="" />
 </head>
 <windowUI center="true" content="UAuto" rect="20,20,733,509" showT="true" windowStyle="2031">
-	<buttonUI content="获取数据&#10;" css.enable="true" cursor="IDC_HAND" drawBorder="true" drawFocus="true" enable="true" enableCanvas="true" enableFocus="true" name="Btn" rect="521,408,99,68" showT="true" expandT="true" />
+	<buttonUI content="获取数据&#10;" css.enable="true" cursor="IDC_HAND" drawBorder="true" drawFocus="true" enable="true" enableCanvas="true" enableFocus="true" name="Btn" rect="603,408,99,68" showT="true" expandT="true" />
 	<dateTimeUI rect="613,41,100,20" showT="true" expandT="true" />
 	<shapeText content="输入Url，多行输入时请以分号';'进行区分" layout.height="20" layout.width="auto" name="Title" rect="28,55,154,20" showT="true" expandT="false" />
-	<editUI drawBorder="true" enable="true" enableFocus="true" layout.align="auto" layoutControl="true" multiLine="true" name="Info" rect="28,93,483,382" scrollBarAuto="true" scrollBarShowH="true" scrollBarShowV="true" show="true" showT="true" expandT="true" />
+	<editUI drawBorder="true" enable="true" enableFocus="true" layout.align="auto" layoutControl="true" multiLine="true" name="Info" rect="28,93,561,382" scrollBarAuto="true" scrollBarShowH="true" scrollBarShowV="true" show="true" showT="true" expandT="true" />
 </windowUI>
