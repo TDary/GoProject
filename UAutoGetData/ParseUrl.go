@@ -30,13 +30,19 @@ func ProcessUrls(url string) ([]string, []string) {
 	var originUrls []string
 	var apiUrl string
 	var uuid string
+	var oriUrl string
 	everyUrl = strings.Split(url, ";")
 	for _, item := range everyUrl {
 		listUrl := strings.Split(item, "/")
 		uuid = listUrl[4]
 		apiUrl = "http://perfeye.console.testplus.cn/api/show/task/" + uuid
 		apiurls = append(apiurls, apiUrl)
-		originUrls = append(originUrls, item)
+		if strings.Contains(item, "\n") {
+			oriUrl = strings.Trim(item, "\n")
+			originUrls = append(originUrls, oriUrl)
+		} else {
+			originUrls = append(originUrls, item)
+		}
 	}
 	return apiurls, originUrls
 }
