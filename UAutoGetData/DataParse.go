@@ -19,7 +19,7 @@ func getData(url string, report_url string) string {
 	}
 	request.Header.Add("Content-Type", "application/json")
 	request.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44")
-	request.Header.Add("Cookie", "_ga=GA1.2.116075688.1657612386; app_key=e40280a0; Hm_lvt_4bfddcb32e5c5626aa3d10997c3dacd8=1657884787; Hm_lvt_eefc5ff12060e96822df38857e4cd9ed=1662002258,1662369555,1662369909; project_key=mecha; mysession=MTY2MjcwOTAwM3xOd3dBTkRkT1ZsQXlXbFZDUTBSU1FsZ3lOME5GTlUxTFQwNDFRVVEwUjFKVFRFSlZVMUpRTlVvMk5qTllOVk5hVHpORFRFOVJNbEU9fAT9Ft2v9h7KYsW_VvD1clW6VkkRRSAw3gQBE1ajie25; email=chenderui1%40thewesthill.net; Hm_lpvt_eefc5ff12060e96822df38857e4cd9ed=1662709070")
+	request.Header.Add("Cookie", "_ga=GA1.2.116075688.1657612386; Hm_lvt_4bfddcb32e5c5626aa3d10997c3dacd8=1657884787; app_key=5c316f30; Hm_lvt_eefc5ff12060e96822df38857e4cd9ed=1664279860,1664332706,1664449964,1665215179; project_key=mecha; mysession=MTY2NTMxMTk5M3xOd3dBTkRaV04waFlNbFZKVWpKRU4wVkpNa1UyVWs0eVZVbzNTalpVVlVKT04wUlBSVlZXUmtsS00wRTNRemMxTkVJeVNrSlJWa0U9fEdVdHRF6-3U_EWYs63zdverH8aaO92cXzchzbedpDnC; email=chenderui1%40thewesthill.net; Hm_lpvt_eefc5ff12060e96822df38857e4cd9ed=1665367975")
 	request.Header.Add("Referer", "http://perfeye.console.testplus.cn/case/list?appKey=mecha")
 	response, err := client.Do(request)
 	if err != nil {
@@ -30,16 +30,19 @@ func getData(url string, report_url string) string {
 	if err != nil {
 		return err.Error()
 	}
-	ProcessData(string(body), report_url)
+	result := ProcessData(string(body), report_url)
+	if result != "" {
+		return "false"
+	}
 	return "Success"
 }
 
 //周性能版本
-func ProcessData2(resultData string, report_Url string) {
+func ProcessData2(resultData string, report_Url string) string {
 	var DetailMap = make(map[string]interface{})
 	err := json.Unmarshal([]byte(resultData), &DetailMap)
 	if err != nil {
-		panic(err)
+		return err.Error()
 	}
 	casename := DetailMap["data"].(map[string]interface{})["BaseInfo"].(map[string]interface{})["CaseName"]
 	DetailFPS := DetailMap["data"].(map[string]interface{})["LabelInfo"].(map[string]interface{})["All"].(map[string]interface{})["LabelFPS"]
@@ -71,14 +74,15 @@ func ProcessData2(resultData string, report_Url string) {
 		avgGpuLoad, maxGpuLoad, avgDrawcall, maxDrawcall, avgPrimitive, maxPrimitive, avgUpload, maxUpload, avgDownload,
 		maxDownload, report_Url}
 	WriteData2(resData)
+	return ""
 }
 
 //处理数据初始版本
-func ProcessData(resultData string, report_Url string) {
+func ProcessData(resultData string, report_Url string) string {
 	var DetailMap = make(map[string]interface{})
 	err := json.Unmarshal([]byte(resultData), &DetailMap)
 	if err != nil {
-		panic(err)
+		return err.Error()
 	}
 	casename := DetailMap["data"].(map[string]interface{})["BaseInfo"].(map[string]interface{})["CaseName"]
 	DetailFPS := DetailMap["data"].(map[string]interface{})["LabelInfo"].(map[string]interface{})["All"].(map[string]interface{})["LabelFPS"]
@@ -124,4 +128,5 @@ func ProcessData(resultData string, report_Url string) {
 		avgGpuLoad, maxGpuLoad, avgGpuMemry, maxGpuMemry, avgDrawcall, maxDrawcall, avgVertex, maxVertex, avgPrimitive, maxPrimitive,
 		avgSend, maxSend, avgRecv, maxRecv, avgRead, maxRead, avgWrite, maxWrite, report_Url}
 	WriteData(resData)
+	return ""
 }

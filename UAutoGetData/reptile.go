@@ -87,6 +87,8 @@ func main() {
 				isSuccess = getData(item, originUrls[index])
 				if isSuccess == "Success" {
 					continue
+				} else if isSuccess == "false" {
+					ap.Alert("警告", "参数已过期，请联系开发人员更新@陈德睿")
 				} else {
 					ap.Alert("提示", "有输入错误的url,请重新输入")
 				}
@@ -111,6 +113,8 @@ func main() {
 				xc.XWnd_SetIcon(hWindow, hIcon)
 				// 显示模态窗口
 				xc.XModalWnd_DoModal(hWindow)
+			} else if isSuccess == "false" {
+				ap.Alert("警告", "参数已过期，请联系开发人员更新@陈德睿")
 			} else {
 				ap.Alert("提示", "输入url有误,请重新输入")
 			}
