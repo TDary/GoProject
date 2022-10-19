@@ -1,11 +1,10 @@
-package TimesTools
+package GetTimes
 
 import (
-	"fmt"
 	"time"
 )
 
-func GetLogicTime() {
+func GetLogicTime() time.Time {
 	timeNow := time.Now()
-	fmt.Print(timeNow)
+	return timeNow
 }

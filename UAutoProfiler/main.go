@@ -1,11 +1,12 @@
 package main
 
 import (
-	"UAutoProfiler/TimeTools"
+	GetTimes "UAutoProfiler/TimeTools"
 	"fmt"
 )
 
 func main() {
 	fmt.Print("Welcome to use UAutoServer")
-	TimeTools.GetLogicTime()
+	time := GetTimes.GetLogicTime()
+	loger.Print(time)
 }
