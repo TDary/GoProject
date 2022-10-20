@@ -1,4 +1,4 @@
-package main
+package LogC
 
 import (
 	"log"
@@ -17,4 +17,13 @@ func init() {
 	loger = log.New(logFile, "[logTool]", log.LstdFlags|log.Lshortfile|log.LUTC)
 	// 将文件设置为loger作为输出
 	return
+}
+
+func Print(message any) {
+	loger.Print(message)
+}
+
+//使用于强制结束进程,到此会直接关闭服务进程
+func Error(message any) {
+	loger.Fatal(message)
 }
